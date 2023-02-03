@@ -1,4 +1,4 @@
-# Taking Jason Turner's Better `main' A Step Further
+# Taking Jason Turner's Better `main` A Step Further
 
 Well known C++ trainer, C++ conference presenter, C++ book author, and former C++ podcaster, Jason Turner, recently took up the idea of fashioning a `main()` function that is better suited to Modern C++:
 
