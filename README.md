@@ -49,6 +49,8 @@ The important step here is this statement `'args.reserve(argc);'` prior to itera
 
 The `reserve()` call will up front cause a call to the `pmr` custom allocator - just one time and just sufficient to hold all the arg elements. If one instead just proceeded to incrementally `emplace()` elements at the end of the vector, this would result in a doubling algorithm for when the vector buffer needs to be enlarged. That would cause the overall memory request for the vector to exceed the stack memory buffer. The up front `reserve()` call prevents that from happening.
 
+And here is a second important point - the `std::pmr:vector<> args` absolutely should be wrapped via `std::span<>` and not passed to the better `main()` function as its actual type, `std::pmr:vector<>`. Passing it as a C++ vector type would leave open an invitation to regard it as dynamically expandable - in this implementation that is not at all the case as there is a fixed amount of stack storage that backs this `args` vector and it cannot dynamically expand. Yes, declaring it as `const` will catch attempts to grow the vector, but a span makes it completely unambiguous - the span `args` is fixed.
+
 Now the `std::span<const std::string_view> args` passed to `better_main()` is entirely stack resident and it is sized based on the `argc` parameter passed to the C-style `main()`.
 
 In theory this further improved implementation of the old-style `main()` could be rolled into the C++ runtime and we C++ programers would start using `better_main()` as the entry point to our Modern C++ programs - though perhaps we might want to rename it to, say, `cpp_main()`?
