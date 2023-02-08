@@ -22,7 +22,7 @@
  * @return the completion status code (zero indicates success)
  */
 int main(int argc, const char *argv[]) {
-  [[nodiscard]] int better_main(const std::span<const std::string_view> &args);
+  [[nodiscard]] int better_main(const std::span<const std::string_view> args);
 
   std::cerr << "DEBUG: argc: " << argc << ", sizeof(std::string_view): " << sizeof(std::string_view) << '\n';
 
@@ -68,7 +68,7 @@ int main(int argc, const char *argv[]) {
  * @param args a span of string_view arguments, representing command line arguments
  * @return the completion status code (zero indicates success)
  */
-[[nodiscard]] int better_main([[maybe_unused]] const std::span<const std::string_view> &args) {
+[[nodiscard]] int better_main([[maybe_unused]] const std::span<const std::string_view> args) {
 
   // iterate and display each element of args as a quoted string
   auto const prn_arg = [&out=std::cout]
