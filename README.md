@@ -8,7 +8,7 @@ Jan 30, 2023
 
 Jason incremented on his thoughts for this better `main()`, a first iteration looking like so:
 ```C++
-  [[nodiscard]] int better_main(const std::span<const std::string_view> &args);
+  [[nodiscard]] int better_main(const std::span<const std::string_view> args);
 ```
 
 This first iteration relied on `std::vector` as the backing for the `std::span<> args`:
@@ -53,4 +53,4 @@ And here is a second important point - the `std::pmr:vector<> args` absolutely s
 
 Now the `std::span<const std::string_view> args` passed to `better_main()` is entirely stack resident and it is sized based on the `argc` parameter passed to the C-style `main()`.
 
-In theory this further improved implementation of the old-style `main()` could be rolled into the C++ runtime and we C++ programers would start using `better_main()` as the entry point to our Modern C++ programs - though perhaps we might want to rename it to, say, `cpp_main()`?
+In theory this further improved implementation of the old-style `main()` could be rolled into the C++ runtime and we C++ programmers would start using `better_main()` as the entry point to our Modern C++ programs - though perhaps we might want to rename it to, say, `cpp_main()`?
